@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>A Leaflet map!</title>
+   <script src="http://connect.soundcloud.com/sdk.js"></script>
+ <script>
+    SC.initialize({
+    client_id: "3b1730e670b204fc2bc9611a88461ee2",
+    redirect_uri: "http://austinmusicmap.org"
+   });
+ </script>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <style>
+    #map{ height: 100% }
+  </style>
+ 
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+
+  // initialize the map
+  var map = L.map('map').setView([42.35, -71.08], 13);
+
+  // load a tile layer
+  L.tileLayer('http://localhost/map/night_club.png',
+    {
+      attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+      maxZoom: 17,
+      minZoom: 9
+    }).addTo(map);
+
+  // load GeoJSON from an external file
+  $.getJSON("rodents.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data).addTo(map);
+  });
+
+  </script>
+</body>
+</html>
+
+<script language="javascript" type="text/javascript">
+jQuery(document).ready(function() {
+  jQuery(".img-swap").live('click', function() {
+    if (jQuery(this).attr("class") == "img-swap") {
+		 this.src = this.src.replace("_on","_off");     
+    } else {
+      this.src = this.src.replace("_off","_on");
+    }
+    jQuery(this).toggleClass("on");
+  });
+ 
+
+ $jq('#search-icon').mouseenter(function() {
+-            $jq(this).find("#search-form").stop(true, true).slideDown();
+-        });
+-        //hide submenus on exit
+-        $jq('#search-icon').mouseleave(function() {
+-            $jq(this).find("#search-form").stop(true, true).slideUp();
+-        });
+});
+</script>
+ 
